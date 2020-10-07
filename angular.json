@@ -13,7 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["lodash"],
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "outputPath": "dist/New-ICFSPA",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -121,8 +123,13 @@
               "devServerTarget": "New-ICFSPA:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "New-ICFSPA"
 }

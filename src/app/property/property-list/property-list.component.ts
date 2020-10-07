@@ -12,6 +12,11 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
 export class PropertyListComponent implements OnInit {
   SellRent = 1;
   properties: IPropertyBase[];
+  Today = new Date();
+  City = '';
+  SearchCity = '';
+  SortbyParam = '';
+  SortDirection = 'asc';
 
   constructor(private housingService: HousingService,
               private route: ActivatedRoute) { }
@@ -30,4 +35,22 @@ export class PropertyListComponent implements OnInit {
       }
     );
   }
+
+  onCityFilter() {
+    this.SearchCity = this.City;
+  }
+
+  onCityFilterClear() {
+    this.SearchCity = '';
+    this.City = '';
+  }
+
+  onSortDirection() {
+    if (this.SortDirection === 'desc') {
+      this.SortDirection = 'asc';
+    } else {
+      this.SortDirection = 'desc';
+    }
+  }
+
 }

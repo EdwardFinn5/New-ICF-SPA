@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hspa-ef"
+  },
+  "targets": {
+    "hspa-ef": {
+      "hosting": {
+        "New-ICFSPA": [
+          "hspa-ef"
+        ]
+      }
+    }
+  }
+}

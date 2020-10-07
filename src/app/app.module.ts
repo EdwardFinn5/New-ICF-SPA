@@ -7,6 +7,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 
 import { AppComponent } from './app.component';
@@ -22,12 +23,17 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserService } from './services/user.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
+import { PropertyDetailResolverService } from './property/property-detail/property-detail-resolver.service';
+import { FilterPipe } from './pipes/filter.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 const appRoutes: Routes = [
   {path: '', component: PropertyListComponent},
   {path: 'rent-property', component: PropertyListComponent},
   {path: 'add-property', component: AddPropertyComponent},
-  {path: 'property-detail/:id', component: PropertyDetailComponent},
+  {path: 'property-detail/:id',
+          component: PropertyDetailComponent,
+          resolve: {prp: PropertyDetailResolverService}},
   {path: 'user/login', component: UserLoginComponent},
   {path: 'user/register', component: UserRegisterComponent},
   {path: '**', component: PropertyListComponent}
@@ -42,7 +48,9 @@ const appRoutes: Routes = [
     AddPropertyComponent,
     PropertyDetailComponent,
     UserRegisterComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    FilterPipe,
+    SortPipe
    ],
   imports: [
     BrowserModule,
@@ -54,13 +62,15 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgxGalleryModule
   ],
   providers: [
     HousingService,
     UserService,
     AlertifyService,
-    AuthService
+    AuthService,
+    PropertyDetailResolverService
   ],
   bootstrap: [AppComponent]
 })
